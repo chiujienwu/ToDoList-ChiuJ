@@ -8,9 +8,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Home Page</title>
+
 </head>
 <body>
-
+<a href="login.jsp">Login</a>
+<img src="../resources/img/logo.png" alt="clipboard checklist image">
+<h1>My All Important ToDo Checklist</h1>
+<a href="list.jsp">View that Scary List</a>
 </body>
+
+
 </html>
