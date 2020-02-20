@@ -7,10 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Home Page</title>
-
-</head>
+    <jsp:include page="/WEB-INF/view/includes/header.jsp"/>
 <body>
 <a href="login.jsp">Login</a>
 <img src="../resources/img/logo.png" alt="clipboard checklist image">
@@ -21,7 +18,6 @@
     <input type="number" name="idnumber" ><br>
     <input type="submit" name="submit" id="Submit" value="Search">
 </form>
-</body>
 
+<jsp:include page="/WEB-INF/view/includes/footer.jsp"/>
 
-</html>
