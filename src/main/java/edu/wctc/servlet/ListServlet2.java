@@ -3,6 +3,7 @@ package edu.wctc.servlet;
 import edu.wctc.DatabaseUtils;
 import edu.wctc.entity.Task;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,7 +48,7 @@ public class ListServlet2 extends HttpServlet {
             sql.append(" on TASK.CATEGORYID = TASKCATEGORY.CATEGORYID");
             sql.append(" left join TASKPRIORITY");
             sql.append(" on TASK.PRIORITYID = TASKPRIORITY.PRIORITYID");
-            sql.append(" ORDER BY taskid asc"); // Don't end SQL with semicolon!
+            sql.append(" ORDER BY TASK.taskid asc"); // Don't end SQL with semicolon!
 
             // Create a connection
             conn = DriverManager.getConnection(DRIVER_NAME + absPath, USERNAME, PASSWORD);
@@ -75,32 +76,42 @@ public class ListServlet2 extends HttpServlet {
                 anotherTask.setTaskCategory(rset.getString(5));
                 anotherTask.setTaskDetail(rset.getString(6));
                 anotherTask.setTaskPriority(rset.getString(7));
-                
+
                 // Append it as a list item
-                output.append("<li>").append(taskID + ": " + taskName + ": " + taskDueDate + ": " + taskCompete + ": " + category + ": " + priorityID).append("</li>");
+                // output.append("<li>").append(taskID + ": " + taskName + ": " + taskDueDate + ": " + taskCompete + ": " + category + ": " + priorityID).append("</li>");
+
+
             }
             // Close all those opening tags
-            output.append("</ul></body></html>");
+//            output.append("</ul></body></html>");
 
             // Send the HTML as the response to browser
             response.setContentType("text/html");
+            request.setAttribute( "anotherTaskList", anotherTaskList);
+
+            response.setContentType("text/html");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/view/list.jsp");
+            rd.forward(request, response);
+
             // outputs to browser
-            response.getWriter().print(output.toString());
+//            response.getWriter().print(output.toString());
 
         } catch (SQLException | ClassNotFoundException e) {
             // If there's an exception locating the driver, send IT as the response
             response.getWriter().print(e.getMessage());
             e.printStackTrace();
         } finally {
-            if (rset != null) {
-                try {
-                    rset.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
 
             DatabaseUtils.closeAll(conn, stmt, rset);
+//            if (rset != null) {
+//                try {
+//                    rset.close();
+//                } catch (SQLException e) {
+//                    e.printStackTrace();
+//                }
+            }
+
+
 //            if (stmt != null) {
 //                try {
 //                    stmt.close();
@@ -117,5 +128,5 @@ public class ListServlet2 extends HttpServlet {
 //            }
         }
     }
-}
+
 
