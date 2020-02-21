@@ -14,7 +14,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "ListServlet", urlPatterns = "/list2")
+@WebServlet(name = "ListServlet2", urlPatterns = "/list2")
 public class ListServlet2 extends HttpServlet {
     private final String DRIVER_NAME = "jdbc:derby:";
     private final String DATABASE_PATH = "../../db";
@@ -76,6 +76,7 @@ public class ListServlet2 extends HttpServlet {
                 anotherTask.setTaskCategory(rset.getString(5));
                 anotherTask.setTaskDetail(rset.getString(6));
                 anotherTask.setTaskPriority(rset.getString(7));
+                anotherTaskList.add(anotherTask);
 
                 // Append it as a list item
                 // output.append("<li>").append(taskID + ": " + taskName + ": " + taskDueDate + ": " + taskCompete + ": " + category + ": " + priorityID).append("</li>");
@@ -90,7 +91,7 @@ public class ListServlet2 extends HttpServlet {
             request.setAttribute( "anotherTaskList", anotherTaskList);
 
             response.setContentType("text/html");
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/view/list.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/view/list2.jsp");
             rd.forward(request, response);
 
             // outputs to browser

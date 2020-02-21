@@ -39,46 +39,31 @@
             <thead>
             <tr>
                 <th>Task ID</th>
-                <th>Date Entered</th>
-                <th>ToDo Description</th>
+                <th>Task Name</th>
+                <th>Due Date</th>
+                <th>Complete</th>
+                <th>Category</th>
+                <th>Detail</th>
                 <th>Priority</th>
-                <th>Actions</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
+                <c:forEach var="anotherTaskList" items="${anotherTaskList}">
             <tr>
-                <td>1</td>
-                <td>01/01/2020</td>
-                <td>Study Java</td>
-                <td>Low</td>
-                <td>
+                <td>${anotherTask.taskId}</td>
+                <td>${anotherTask.taskName}</td>
+                <td>${anotherTask.taskDueDate}</td>
+                <td>${anotherTask.taskComplete}</td>
+                <td>${anotherTask.taskCategory}</td>
+                <td>${anotherTask.taskDetail}</td>
+                <td>${anotherTask.taskPriority}</td>
                     <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                     <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                     <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                 </td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>01/03/2020</td>
-                <td>Study Adv Java</td>
-                <td>Medium</td>
-                <td>
-                    <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>01/05/2020</td>
-                <td>Study Distributed Java</td>
-                <td>High</td>
-                <td>
-                    <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                </td>
-            </tr>
+                </c:forEach>
             </tbody>
         </table>
     </div>
